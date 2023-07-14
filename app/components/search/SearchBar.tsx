@@ -9,8 +9,8 @@ const StyledH1 = styled.h1`
   font-size: 24px;
   font-weight: 700;
   line-height: 28px;
-  color: #000;
-  padding: 0 0 12px 8px;
+  color: #050510;
+  padding: 0 0 20px 8px;
 `;
 
 const StyledSearchInput = styled.input`
@@ -19,6 +19,9 @@ const StyledSearchInput = styled.input`
   max-width: 100%;
   background-color: #F7F7F8;
   border-radius: 16px;
+  font-size: 15px;
+  line-height: 20px;
+  color: #050510;
 `;
 
 export const SearchBar = () => {

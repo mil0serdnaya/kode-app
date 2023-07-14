@@ -1,7 +1,10 @@
-import { SearchBar } from "./components/SearchBar"
+import { StyledContainer } from "./components/StyledContainer";
+import { SearchBar } from "./components/search/SearchBar";
 
 export default function Page() {
   return(
-    <SearchBar />
+    <StyledContainer>
+      <SearchBar />
+    </StyledContainer>
   );
 }
