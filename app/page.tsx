@@ -1,4 +1,4 @@
-import { StyledContainer } from "./components/StyledContainer";
+import { StyledContainer } from "./components/styled/StyledContainer";
 import { SearchBar } from "./components/search/SearchBar";
 
 export default function Page() {
