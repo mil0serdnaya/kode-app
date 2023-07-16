@@ -49,7 +49,7 @@ const StyledSearchIcon = styled(Image)`
   left: 12px;
 `;
 
-export const SearchBar = () => {
+export const TopBar = () => {
   return (
     <StyledHeader>
       <StyledH1>Search</StyledH1>

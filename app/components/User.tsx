@@ -2,7 +2,7 @@
 import { styled } from 'styled-components';
 
 const StyledUser = styled.div`
-  padding: 6px 16px;
+  padding: 6px;
   display: flex;
   align-items: center;
   gap: 16px;

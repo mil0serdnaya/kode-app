@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import Head from 'next/head';
 import './normalize.css';
-import './global.css';
  
 export const metadata: Metadata = {
   title: 'KODE app',

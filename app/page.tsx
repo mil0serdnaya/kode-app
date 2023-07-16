@@ -1,14 +1,17 @@
+'use client';
+import { useState } from "react";
 import { StyledContainer } from "./components/styled/StyledContainer";
-import { SearchBar } from "./components/SearchBar";
-import { Tabs } from "./components/Tabs";
-import { User } from "./components/User";
+import { TopBar } from "./components/TopBar";
+import { Users } from "./components/Users";
 
 export default function Page() {
+  const [filterText, setFilterText] = useState('');
+  const [sortBy, setSortBy] = useState('alphabetically');
+
   return(
     <StyledContainer>
-      <SearchBar />
-      <Tabs />
-      <User />
+      <TopBar />
+      <Users />
     </StyledContainer>
   );
 }
