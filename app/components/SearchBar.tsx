@@ -1,8 +1,8 @@
 'use client';
 import { styled } from 'styled-components';
 import Image from 'next/image';
-import SortIcon from '../../img/sort.svg';
-import SearchIcon from '../../img/search.svg';
+import SortIcon from '../img/sort.svg';
+import SearchIcon from '../img/search.svg';
 import { Sorting } from './Sorting';
 
 const StyledHeader = styled.header`

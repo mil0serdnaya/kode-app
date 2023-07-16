@@ -1,7 +1,7 @@
 'use client';
 import { styled } from 'styled-components';
 import Image from 'next/image';
-import CrossIcon from '../../img/cross.svg';
+import CrossIcon from '../img/cross.svg';
 
 const StyledOverlay = styled.div`
   width: 100%;

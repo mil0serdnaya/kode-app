@@ -1,4 +1,4 @@
-export type TabsType = {
+export interface TabsI {
   id: number;
   name: string;
   isActive: boolean;

@@ -1,8 +1,8 @@
 'use client';
 import { styled } from 'styled-components';
-import { TabsType } from '../lib/types';
+import { TabsI } from '../lib/interfaces';
 
-const TABS: TabsType[] = [
+const TABS: TabsI[] = [
   {
     id: 1,
     name: 'All',
@@ -59,8 +59,7 @@ const StyledTab = styled.div`
 
 export const Tabs = () => {
   return (
-    <>
-      <StyledTabs>
+    <StyledTabs>
       {TABS.map((tab) => {
         return (
           <StyledTab key={tab.id} className={tab.isActive ? 'active' : ''}>
@@ -68,7 +67,6 @@ export const Tabs = () => {
           </StyledTab>
         )
       })}
-      </StyledTabs>
-    </>
+    </StyledTabs>
   );
 }
