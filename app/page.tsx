@@ -8,7 +8,6 @@ export default function Page() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-
   const [filterText, setFilterText] = useState('');
   const [sortBy, setSortBy] = useState('alphabetically');
 

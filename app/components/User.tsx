@@ -12,7 +12,11 @@ const StyledUserImage = styled.div`
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background-color: #979797;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  background-color: #FBEAF9;
 `;
 
 const StyledUserName = styled.span`
@@ -39,16 +43,26 @@ const StyledUserDepartment = styled.span`
   margin-top: 3px;
 `;
 
-export const User = () => {
+export const User = ({
+  firstName,
+  lastName,
+  userTag,
+  department
+}:{
+  firstName: string;
+  lastName: string;
+  userTag: string;
+  department: string;
+}) => {
   return (
     <StyledUser>
-      <StyledUserImage></StyledUserImage>
+      <StyledUserImage>img api is 💀</StyledUserImage>
       <div>
         <div>
-          <StyledUserName>Алексей Миногаров</StyledUserName>
-          <StyledUserTag>ml</StyledUserTag>
+          <StyledUserName>{firstName} {lastName}</StyledUserName>
+          <StyledUserTag>{userTag}</StyledUserTag>
         </div>
-        <StyledUserDepartment>Analyst</StyledUserDepartment>
+        <StyledUserDepartment>{department}</StyledUserDepartment>
       </div>
     </StyledUser>
   );

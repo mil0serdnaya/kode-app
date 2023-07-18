@@ -17,7 +17,11 @@ export const Users = (props: IUserProps) => {
       <StyledUsersContainer>
         {users.map((user) => {
           return (
-            <User key={user.id}/>
+            <User key={user.id} 
+                  firstName={user.firstName}
+                  lastName={user.lastName}
+                  userTag={user.userTag}
+                  department={user.department}/>
           )
         })}
       </StyledUsersContainer>
