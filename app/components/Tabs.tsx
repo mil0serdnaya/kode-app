@@ -1,8 +1,8 @@
 'use client';
 import { styled } from 'styled-components';
-import { ITabs } from '../lib/interfaces';
+import { TabsType } from '../lib/types';
 
-const TABS: ITabs[] = [
+const TABS: TabsType[] = [
   {
     id: 1,
     name: 'All',

@@ -83,7 +83,12 @@ export const TopBar = ({
           />
         </StyledSortBtn>
       </StyledSearchWrapper>
-      {isSortVisivle && <Sorting />}
+      {isSortVisivle && 
+        <Sorting 
+          onSortVisibleChange={setSortVisible} 
+          onSortByChange={onSortByChange}
+          sortBy={sortBy}
+        />}
     </StyledHeader>
   );
 }

@@ -36,6 +36,7 @@ export default function Page() {
 
   return(
     <StyledContainer>
+      {sortBy}
       <TopBar 
         filterText={filterText} 
         sortBy={sortBy}

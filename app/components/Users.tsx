@@ -2,13 +2,13 @@
 import { styled } from 'styled-components';
 import { Tabs } from './Tabs';
 import { User } from './User';
-import { IUserProps } from '../lib/interfaces';
+import { UserPropsType } from '../lib/types';
 
 const StyledUsersContainer = styled.div`
   padding: 16px;
 `;
 
-export const Users = (props: IUserProps) => {
+export const Users = (props: UserPropsType) => {
   const users = props.users;
   console.log(users)
 

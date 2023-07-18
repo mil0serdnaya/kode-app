@@ -1,9 +1,9 @@
-export interface ITabs {
+export type TabsType = {
   id: number;
   name: string;
   isActive: boolean;
 }
-export interface IUser {
+export type UserType = {
   id: string;
   avatarUrl: string;
   firstName: string;
@@ -15,6 +15,8 @@ export interface IUser {
   phone: string;
 }
 
-export interface IUserProps {
-  users: IUser[];
+export type UserPropsType = {
+  users: UserType[];
  }
+
+ export type SortByType = 'alphabetically' | 'birthday';

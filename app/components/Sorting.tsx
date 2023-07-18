@@ -87,13 +87,27 @@ const StyledLabel = styled.label`
   }
 `;
 
-export const Sorting = () => {
+export const Sorting = ({
+  sortBy,
+  onSortVisibleChange,
+  onSortByChange
+}:{
+  sortBy: string;
+  onSortVisibleChange: React.Dispatch<React.SetStateAction<boolean>>;
+  onSortByChange: React.Dispatch<React.SetStateAction<string>>;
+}) => {
+
+  const onRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onSortByChange(e.target.id)
+    onSortVisibleChange(false)
+  }
+
   return (
     <StyledOverlay>
       <StyledSortingBlock>
         <StyledSortingBlockTop>
           <StyledSortingBlockHeader>Sorting</StyledSortingBlockHeader>
-          <StyledSortingBlockBtn>
+          <StyledSortingBlockBtn onClick={() => onSortVisibleChange(false)}>
             <Image
               src={CrossIcon}
               alt="Sort icon"
@@ -102,11 +116,17 @@ export const Sorting = () => {
         </StyledSortingBlockTop>
         <form>
           <StyledFormRow>
-            <StyledRadio type="radio" id="alphabetically" name="sort"/>
+            <StyledRadio type="radio" id="alphabetically" name="sort" checked={sortBy === 'alphabetically'}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                onRadioChange(e);
+              }}/>
             <StyledLabel htmlFor="alphabetically"> Alphabetically </StyledLabel>
           </StyledFormRow>
           <StyledFormRow>
-            <StyledRadio type="radio" id="birthday" name="sort"/>
+            <StyledRadio type="radio" id="birthday" name="sort" checked={sortBy === 'birthday'}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                onRadioChange(e);
+              }}/>
             <StyledLabel htmlFor="birthday"> By birthday </StyledLabel>
           </StyledFormRow>
         </form>
