@@ -10,6 +10,7 @@ const StyledUsersContainer = styled.div`
 
 export const Users = (props: IUserProps) => {
   const users = props.users;
+  console.log(users)
 
   return (
     <section>
@@ -17,11 +18,13 @@ export const Users = (props: IUserProps) => {
       <StyledUsersContainer>
         {users.map((user) => {
           return (
-            <User key={user.id} 
-                  firstName={user.firstName}
-                  lastName={user.lastName}
-                  userTag={user.userTag}
-                  department={user.department}/>
+            <User 
+              key={user.id} 
+              firstName={user.firstName}
+              lastName={user.lastName}
+              userTag={user.userTag}
+              department={user.department}
+            />
           )
         })}
       </StyledUsersContainer>

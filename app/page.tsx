@@ -36,7 +36,12 @@ export default function Page() {
 
   return(
     <StyledContainer>
-      <TopBar />
+      <TopBar 
+        filterText={filterText} 
+        sortBy={sortBy}
+        onFilterTextChange={setFilterText}
+        onSortByChange={setSortBy}
+       />
       {users && <Users users={users}/>}
     </StyledContainer>
   );

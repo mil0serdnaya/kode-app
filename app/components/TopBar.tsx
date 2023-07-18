@@ -1,4 +1,5 @@
 'use client';
+import { useState } from "react";
 import { styled } from 'styled-components';
 import Image from 'next/image';
 import SortIcon from '../img/sort.svg';
@@ -49,7 +50,19 @@ const StyledSearchIcon = styled(Image)`
   left: 12px;
 `;
 
-export const TopBar = () => {
+export const TopBar = ({
+  filterText,
+  sortBy,
+  onFilterTextChange,
+  onSortByChange
+}:{
+  filterText: string;
+  sortBy: string;
+  onFilterTextChange: React.Dispatch<React.SetStateAction<string>>;
+  onSortByChange: React.Dispatch<React.SetStateAction<string>>;
+}) => {
+  const [isSortVisivle, setSortVisible] = useState(false);
+
   return (
     <StyledHeader>
       <StyledH1>Search</StyledH1>
@@ -58,15 +71,19 @@ export const TopBar = () => {
           src={SearchIcon}
           alt="Search icon"
         />
-        <StyledSearchInput type="text" placeholder="Search by name, tag, email..."/>
-        <StyledSortBtn>
+        <StyledSearchInput 
+          type="text" 
+          value={filterText}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => onFilterTextChange(e.target.value)}
+          placeholder="Search by name, tag, email..."/>
+        <StyledSortBtn onClick={() => setSortVisible(!isSortVisivle)}>
           <Image
             src={SortIcon}
             alt="Sort icon"
           />
         </StyledSortBtn>
       </StyledSearchWrapper>
-      {/* <Sorting /> */}
+      {isSortVisivle && <Sorting />}
     </StyledHeader>
   );
 }
