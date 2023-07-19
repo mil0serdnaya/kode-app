@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import { StyledContainer } from "./components/styled/StyledContainer";
 import { TopBar } from "./components/TopBar";
 import { Users } from "./components/Users";
+import { UserPropsType } from './lib/types';
 
 export default function Page() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<UserPropsType>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [filterText, setFilterText] = useState('');
@@ -36,14 +37,15 @@ export default function Page() {
 
   return(
     <StyledContainer>
-      {sortBy}
       <TopBar 
-        filterText={filterText} 
+        filterText={filterText}
         sortBy={sortBy}
         onFilterTextChange={setFilterText}
         onSortByChange={setSortBy}
        />
-      {users && <Users users={users}/>}
+      {users && 
+        <Users users={users} sortBy={sortBy}/>
+      }
     </StyledContainer>
   );
 }

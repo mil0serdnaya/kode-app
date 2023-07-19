@@ -2,21 +2,26 @@
 import { styled } from 'styled-components';
 import { Tabs } from './Tabs';
 import { User } from './User';
-import { UserPropsType } from '../lib/types';
+import { UserPropsType, UserType } from '../lib/types';
 
 const StyledUsersContainer = styled.div`
   padding: 16px;
 `;
 
-export const Users = (props: UserPropsType) => {
-  const users = props.users;
-  console.log(users)
+export const Users = ({
+  users,
+  sortBy
+}: {
+  users: UserPropsType;
+  sortBy: string;
+}) => {
+  const usersAlphabetically = users.sort((a: UserType, b: UserType) => a.firstName.localeCompare(b.firstName));
 
   return (
     <section>
       <Tabs />
       <StyledUsersContainer>
-        {users.map((user) => {
+        {usersAlphabetically.map((user: UserType) => {
           return (
             <User 
               key={user.id} 

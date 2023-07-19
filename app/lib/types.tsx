@@ -16,7 +16,6 @@ export type UserType = {
 }
 
 export type UserPropsType = {
-  users: UserType[];
+  users?: UserType[];
+  sort: Function;
  }
-
- export type SortByType = 'alphabetically' | 'birthday';
