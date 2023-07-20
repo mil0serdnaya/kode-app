@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { StyledContainer } from "./components/styled/StyledContainer";
 import { TopBar } from "./components/TopBar";
 import { Users } from "./components/Users";
-import { UserPropsType } from './lib/types';
+import { UserPropsType, UserType } from './lib/types';
 
 export default function Page() {
   const [users, setUsers] = useState<UserPropsType>([]);
@@ -12,7 +12,19 @@ export default function Page() {
   const [filterText, setFilterText] = useState('');
   const [sortBy, setSortBy] = useState('alphabetically');
 
-  const fetchUserData = async () => {
+  const sortUsers = (users: UserPropsType) => {
+    let usersAlphabetically = users.sort((a: UserType, b: UserType) => a.firstName.localeCompare(b.firstName));
+    let usersByBirthday = users.sort((a: UserType, b: UserType) => Date.parse(b.birthday) - Date.parse(a.birthday));
+
+    if (sortBy === 'birthday') {
+      setUsers(usersByBirthday);
+      console.log(users)
+      return
+    }
+    setUsers(usersAlphabetically);
+  }
+
+  const fetchUsersData = async () => {
     try {
       const response = await fetch(
         `https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=all`
@@ -22,7 +34,8 @@ export default function Page() {
         setError(true);
       }
       let usersData = await response.json();
-      setUsers(usersData.items);
+      let usersDataAlphabetically = usersData.items.sort((a: UserType, b: UserType) => a.firstName.localeCompare(b.firstName));
+      setUsers(usersDataAlphabetically);
     } catch(err) {
         setError(true);
         setUsers([]);
@@ -32,8 +45,12 @@ export default function Page() {
   }
 
   useEffect(() => {
-    fetchUserData();
+    fetchUsersData();
   }, [loading]);
+
+  useEffect(() => {
+    sortUsers(users);
+  }, [sortBy]);
 
   return(
     <StyledContainer>
@@ -43,9 +60,7 @@ export default function Page() {
         onFilterTextChange={setFilterText}
         onSortByChange={setSortBy}
        />
-      {users && 
-        <Users users={users} sortBy={sortBy}/>
-      }
+      <Users users={users} sortBy={sortBy}/>
     </StyledContainer>
   );
 }

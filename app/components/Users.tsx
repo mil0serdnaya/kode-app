@@ -1,4 +1,5 @@
 'use client';
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import { Tabs } from './Tabs';
 import { User } from './User';
@@ -15,13 +16,12 @@ export const Users = ({
   users: UserPropsType;
   sortBy: string;
 }) => {
-  const usersAlphabetically = users.sort((a: UserType, b: UserType) => a.firstName.localeCompare(b.firstName));
 
   return (
     <section>
       <Tabs />
       <StyledUsersContainer>
-        {usersAlphabetically.map((user: UserType) => {
+        {users.map((user: UserType) => {
           return (
             <User 
               key={user.id} 
