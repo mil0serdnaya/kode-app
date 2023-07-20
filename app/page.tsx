@@ -18,10 +18,11 @@ export default function Page() {
 
     if (sortBy === 'birthday') {
       setUsers(usersByBirthday);
-      console.log(users)
+      console.log(users, 'bd')
       return
     }
     setUsers(usersAlphabetically);
+    console.log(users, 'al')
   }
 
   const fetchUsersData = async () => {

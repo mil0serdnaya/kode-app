@@ -16,7 +16,7 @@ export const Users = ({
   users: UserPropsType;
   sortBy: string;
 }) => {
-
+  // console.log(users, 'users')
   return (
     <section>
       <Tabs />
