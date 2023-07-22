@@ -16,13 +16,17 @@ export const Users = ({
 }) => {
   // console.log(users, 'users')
 
+  useEffect(() => {
+    // console.log("Items changed!");
+  }, [users]);
+
   return (
     <section>
       <Tabs />
       <StyledUsersContainer>
         {users.map((user: UserType) => {
           return (
-            <User 
+            <User
               key={user.id} 
               firstName={user.firstName}
               lastName={user.lastName}

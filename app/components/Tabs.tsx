@@ -1,6 +1,6 @@
 'use client';
 import { styled } from 'styled-components';
-import { TabsType } from '../lib/types';
+import { UserPropsType, UserType, TabsType } from '../lib/types';
 
 const TABS: TabsType[] = [
   {
@@ -33,6 +33,42 @@ const TABS: TabsType[] = [
     name: 'Android',
     isActive: false
   },
+  {
+    id: 6,
+    name: 'Support',
+    isActive: false
+  },
+  {
+    id: 6,
+    name: 'Frontend',
+    isActive: false
+  },
+  {
+    id: 6,
+    name: 'Back-office',
+    isActive: false
+  },
+  {
+    id: 6,
+    name: 'Pr',
+    isActive: false
+  },
+  {
+    id: 6,
+    name: 'QA',
+    isActive: false
+  },
+  {
+    id: 6,
+    name: 'HR',
+    isActive: false
+  },
+  {
+    id: 6,
+    name: 'Backend',
+    isActive: false
+  },
+  
 ]
 
 const StyledTabs = styled.div`
@@ -62,7 +98,7 @@ export const Tabs = () => {
     <StyledTabs>
       {TABS.map((tab) => {
         return (
-          <StyledTab key={tab.id} className={tab.isActive ? 'active' : ''}>
+          <StyledTab key={tab.id}>
             {tab.name}
           </StyledTab>
         )

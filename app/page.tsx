@@ -18,12 +18,12 @@ export default function Page() {
     if (sortBy === 'birthday') {
       sortedUsers = users.sort((a: UserType, b: UserType) => Date.parse(b.birthday) - Date.parse(a.birthday));
       setUsers(sortedUsers);
-      console.log(users, 'bd')
+      // console.log(users, 'bd')
       return
     }
     sortedUsers = users.sort((a: UserType, b: UserType) => a.firstName.localeCompare(b.firstName));
     setUsers(sortedUsers);
-    console.log(users, 'al')
+    // console.log(users, 'al')
   }
 
   const fetchUsersData = async () => {
