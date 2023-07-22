@@ -10,13 +10,12 @@ const StyledUsersContainer = styled.div`
 `;
 
 export const Users = ({
-  users,
-  sortBy
+  users
 }: {
   users: UserPropsType;
-  sortBy: string;
 }) => {
   // console.log(users, 'users')
+
   return (
     <section>
       <Tabs />

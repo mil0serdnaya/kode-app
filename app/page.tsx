@@ -13,15 +13,16 @@ export default function Page() {
   const [sortBy, setSortBy] = useState('alphabetically');
 
   const sortUsers = (users: UserPropsType) => {
-    let usersAlphabetically = users.sort((a: UserType, b: UserType) => a.firstName.localeCompare(b.firstName));
-    let usersByBirthday = users.sort((a: UserType, b: UserType) => Date.parse(b.birthday) - Date.parse(a.birthday));
+    let sortedUsers;
 
     if (sortBy === 'birthday') {
-      setUsers(usersByBirthday);
+      sortedUsers = users.sort((a: UserType, b: UserType) => Date.parse(b.birthday) - Date.parse(a.birthday));
+      setUsers(sortedUsers);
       console.log(users, 'bd')
       return
     }
-    setUsers(usersAlphabetically);
+    sortedUsers = users.sort((a: UserType, b: UserType) => a.firstName.localeCompare(b.firstName));
+    setUsers(sortedUsers);
     console.log(users, 'al')
   }
 
@@ -61,7 +62,7 @@ export default function Page() {
         onFilterTextChange={setFilterText}
         onSortByChange={setSortBy}
        />
-      <Users users={users} sortBy={sortBy}/>
+      <Users users={users}/>
     </StyledContainer>
   );
 }
