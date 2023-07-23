@@ -20,4 +20,5 @@ export type UserPropsType = {
   users?: UserType[] | [];
   map: Function;
   sort: Function;
+  filter: Function;
  }

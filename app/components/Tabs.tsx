@@ -12,7 +12,7 @@ const TABS: TabsType[] = [
   {
     id: 2,
     name: 'Designers',
-    department: 'designers',
+    department: 'design',
   },
   {
     id: 3,

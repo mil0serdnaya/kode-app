@@ -14,18 +14,25 @@ export const Users = ({
 }: {
   users: UserPropsType;
 }) => {
-  // console.log(users, 'users')
   const [departmentFilter, setDepartmentFilter] = useState('all');
 
-  // useEffect(() => {
-    // console.log("Items changed!");
-  // }, [users]);
+  useEffect(() => {
+    console.log(departmentFilter, 'tab');
+  }, [departmentFilter]);
 
   return (
     <section>
       <Tabs onDepartmentChange={setDepartmentFilter}/>
       <StyledUsersContainer>
-        {users.map((user: UserType) => {
+        {users &&
+          users
+          .filter((user: UserType) => {
+            if(departmentFilter !== 'all'){
+              return user.department === departmentFilter
+            }
+            return users;
+          })
+          .map((user: UserType) => {
           return (
             <User
               key={user.id} 
