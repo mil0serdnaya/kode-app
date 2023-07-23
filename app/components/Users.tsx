@@ -15,14 +15,15 @@ export const Users = ({
   users: UserPropsType;
 }) => {
   // console.log(users, 'users')
+  const [departmentFilter, setDepartmentFilter] = useState('all');
 
-  useEffect(() => {
+  // useEffect(() => {
     // console.log("Items changed!");
-  }, [users]);
+  // }, [users]);
 
   return (
     <section>
-      <Tabs />
+      <Tabs onDepartmentChange={setDepartmentFilter}/>
       <StyledUsersContainer>
         {users.map((user: UserType) => {
           return (

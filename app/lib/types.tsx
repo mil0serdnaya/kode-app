@@ -2,8 +2,8 @@ export type TabsType = {
   id: number;
   name: string;
   department: string;
-  isActive: boolean;
 }
+
 export type UserType = {
   id: string;
   avatarUrl: string;
