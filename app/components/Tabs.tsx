@@ -111,7 +111,7 @@ export const Tabs = ({
           <StyledTab 
             key={tab.id} 
             className={activeId === tab.id ? 'active' : ''}
-            onClick={()=> handleClick(tab.id, tab.department)}>
+            onClick={() => handleClick(tab.id, tab.department)}>
             {tab.name}
           </StyledTab>
         )
