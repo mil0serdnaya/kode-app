@@ -6,25 +6,12 @@ import { Users } from "./components/Users";
 import { UserPropsType, UserType } from './lib/types';
 
 export default function Page() {
-  const [users, setUsers] = useState<UserPropsType>([]);
+  // const [users, setUsers] = useState<UserPropsType>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [filterText, setFilterText] = useState('');
   const [sortBy, setSortBy] = useState('alphabetically');
-
-  const sortUsers = (users: UserPropsType) => {
-    let sortedUsers;
-
-    if (sortBy === 'birthday') {
-      sortedUsers = users.sort((a: UserType, b: UserType) => Date.parse(b.birthday) - Date.parse(a.birthday));
-      setUsers(sortedUsers);
-      // console.log(users, 'bd')
-      return
-    }
-    sortedUsers = users.sort((a: UserType, b: UserType) => a.firstName.localeCompare(b.firstName));
-    setUsers(sortedUsers);
-    // console.log(users, 'al')
-  }
+  let users: UserPropsType = [];
 
   const fetchUsersData = async () => {
     try {
@@ -37,13 +24,27 @@ export default function Page() {
       }
       let usersData = await response.json();
       let usersDataAlphabetically = usersData.items.sort((a: UserType, b: UserType) => a.firstName.localeCompare(b.firstName));
-      setUsers(usersDataAlphabetically);
+      users = usersDataAlphabetically;
     } catch(err) {
         setError(true);
-        setUsers([]);
+        users = [];
     } finally {
         setLoading(false);
     } 
+  }
+
+  const sortUsers = (users: UserPropsType) => {
+    let sortedUsers;
+
+    if (sortBy === 'birthday') {
+      sortedUsers = users.sort((a: UserType, b: UserType) => Date.parse(b.birthday) - Date.parse(a.birthday));
+      users = sortedUsers;
+      console.log(users, 'bd')
+      return
+    }
+    sortedUsers = users.sort((a: UserType, b: UserType) => a.firstName.localeCompare(b.firstName));
+    users = sortedUsers;
+    console.log(users, 'al')
   }
 
   useEffect(() => {

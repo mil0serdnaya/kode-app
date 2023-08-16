@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { Tabs } from './Tabs';
 import { User } from './User';
@@ -15,6 +15,10 @@ export const Users = ({
   users: UserPropsType;
 }) => {
   const [departmentFilter, setDepartmentFilter] = useState('all');
+
+  useEffect(() => {
+   console.log('opa')
+  }, [users]);
 
   return (
     <section>
