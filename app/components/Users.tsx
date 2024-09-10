@@ -17,7 +17,7 @@ export const Users = ({
   const [departmentFilter, setDepartmentFilter] = useState('all');
 
   useEffect(() => {
-   console.log('opa')
+   console.log(users)
   }, [users]);
 
   return (

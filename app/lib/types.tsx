@@ -21,4 +21,5 @@ export type UserPropsType = {
   map: Function;
   sort: Function;
   filter: Function;
+  length: number;
  }
