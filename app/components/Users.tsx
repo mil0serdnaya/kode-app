@@ -16,10 +16,6 @@ export const Users = ({
 }) => {
   const [departmentFilter, setDepartmentFilter] = useState('all');
 
-  useEffect(() => {
-   console.log(users)
-  }, [users]);
-
   return (
     <section>
       <Tabs onDepartmentChange={setDepartmentFilter}/>

@@ -2,6 +2,7 @@
 import { styled } from 'styled-components';
 import Image from 'next/image';
 import CrossIcon from '../img/cross.svg';
+import { SORT_ALPHABETICALLY, SORT_BY_BIRTHDAY } from '../lib/constants';
 
 const StyledOverlay = styled.div`
   width: 100%;
@@ -121,7 +122,7 @@ export const Sorting = ({
               id="alphabetically" 
               value="alphabetically"
               name="sort" 
-              checked={sortBy === 'alphabetically'}
+              checked={sortBy === SORT_ALPHABETICALLY}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 onRadioChange(e);
               }}/>
@@ -133,7 +134,7 @@ export const Sorting = ({
               id="birthday"
               value="birthday"
               name="sort" 
-              checked={sortBy === 'birthday'}
+              checked={sortBy === SORT_BY_BIRTHDAY}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 onRadioChange(e);
               }}/>

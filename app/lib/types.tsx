@@ -16,10 +16,4 @@ export type UserType = {
   phone: string;
 }
 
-export type UserPropsType = {
-  users?: UserType[] | [];
-  map: Function;
-  sort: Function;
-  filter: Function;
-  length: number;
- }
+export type UserPropsType = UserType[]; 
