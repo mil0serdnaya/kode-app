@@ -1,11 +1,12 @@
 'use client';
-import axios from 'axios';
 import { useState, useEffect, useMemo } from "react";
 import { StyledContainer } from "./components/styled/StyledContainer";
 import { TopBar } from "./components/TopBar";
 import { Users } from "./components/Users";
-import { UserPropsType, UserType } from './lib/types';
-import { SORT_ALPHABETICALLY, SORT_BY_BIRTHDAY } from './lib/constants';
+import { UserPropsType } from './lib/types';
+import { SORT_ALPHABETICALLY } from './lib/constants';
+import { fetchUsers } from './lib/services/userService';
+import { sortUsers } from './lib/utils';
 
 export default function Page() {
   const [users, setUsers] = useState<UserPropsType>([]);
@@ -13,11 +14,12 @@ export default function Page() {
   const [error, setError] = useState(false);
   const [filterText, setFilterText] = useState('');
   const [sortBy, setSortBy] = useState(SORT_ALPHABETICALLY);
+  const sortedUsers = useMemo(() => sortUsers(users,sortBy), [users, sortBy]);
 
-  const fetchUsersData = async () => {
+  const setUsersData = async () => {
     try {
-      const response = await axios.get('https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=all');
-      setUsers(response.data.items);
+      const usersData = await fetchUsers();
+      setUsers(usersData);
     } catch (error) {
       setError(true);
       setUsers([]);
@@ -26,26 +28,9 @@ export default function Page() {
     }
   }
 
-  const sortUsers = (users: UserPropsType): UserPropsType => {
-    if (![SORT_BY_BIRTHDAY, SORT_ALPHABETICALLY].includes(sortBy)) {
-      return users;
-    }
-  
-    const sorted = [...users];
-  
-    return sorted.sort((a: UserType, b: UserType) => 
-      sortBy === SORT_BY_BIRTHDAY
-        ? Date.parse(b.birthday) - Date.parse(a.birthday)
-        : a.firstName.localeCompare(b.firstName)
-    );
-  };
-  
-
   useEffect(() => {
-    fetchUsersData();
+    setUsersData();
   }, []);
-
-  const sortedUsers = useMemo(() => sortUsers(users), [users, sortBy]);
 
   return (
     <StyledContainer>
