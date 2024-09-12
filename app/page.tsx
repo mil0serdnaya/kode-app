@@ -3,13 +3,13 @@ import { useState, useEffect, useMemo } from "react";
 import { StyledContainer } from "./components/styled/StyledContainer";
 import { TopBar } from "./components/TopBar";
 import { Users } from "./components/Users";
-import { UserPropsType } from './lib/types';
+import { UsersType } from './lib/types';
 import { SORT_ALPHABETICALLY } from './lib/constants';
 import { fetchUsers } from './lib/services/userService';
 import { sortUsers } from './lib/utils';
 
 export default function Page() {
-  const [users, setUsers] = useState<UserPropsType>([]);
+  const [users, setUsers] = useState<UsersType>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [filterText, setFilterText] = useState('');
@@ -24,7 +24,7 @@ export default function Page() {
       setError(true);
       setUsers([]);
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   }
 
@@ -40,8 +40,9 @@ export default function Page() {
         onFilterTextChange={setFilterText}
         onSortByChange={setSortBy}
       />
-      {!loading && !error && sortedUsers.length > 0 && <Users users={sortedUsers} />}
-      {loading && <p>Загрузка...</p>}
+
+      {!error && sortedUsers.length > 0 && <Users users={sortedUsers} isLoading={loading}/>}
+
       {error && <p>Ошибка загрузки данных</p>}
     </StyledContainer>
   );

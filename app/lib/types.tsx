@@ -16,4 +16,4 @@ export type UserType = {
   phone: string;
 }
 
-export type UserPropsType = UserType[]; 
+export type UsersType = UserType[]; 

@@ -3,31 +3,35 @@ import { useState, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { Tabs } from './Tabs';
 import { User } from './User';
-import { UserPropsType, UserType } from '../lib/types';
+import { UserLoading } from './UserLoading';
+import { UsersType } from '../lib/types';
+import { filterUsersByDepartment } from '../lib/utils'
 
 const StyledUsersContainer = styled.div`
   padding: 16px;
 `;
 
-const filterUsers = (users: UserPropsType, departmentFilter: string) => {
-  return users.filter(user => 
-    departmentFilter === 'all' || user.department === departmentFilter
-  )
-}
+const renderLoadingState = () => (
+  Array.from({length: 8}).map((el, index) => <UserLoading key={index} />)
+)
 
 export const Users = ({
-  users
+  users,
+  isLoading
 }: {
-  users: UserPropsType;
+  users: UsersType;
+  isLoading: boolean
 }) => {
   const [departmentFilter, setDepartmentFilter] = useState('all');
-  const filteredUsers = useMemo(() => filterUsers(users, departmentFilter), [users, departmentFilter]);
+  const filteredUsers = useMemo(() => filterUsersByDepartment(users, departmentFilter), [users, departmentFilter]);
 
   return (
     <section>
       <Tabs onDepartmentChange={setDepartmentFilter}/>
       <StyledUsersContainer>
-        {filteredUsers.length > 0 ? (
+        { isLoading && renderLoadingState() }
+
+        { filteredUsers.length > 0 && !isLoading ? (
           filteredUsers.map(user => (
             <User
               key={user.id}
@@ -38,7 +42,7 @@ export const Users = ({
             />
           ))
         ) : (
-          <p>No users to display</p>
+          !isLoading && <p>No users to display</p>
         )}
       </StyledUsersContainer>
     </section>

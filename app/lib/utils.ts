@@ -1,7 +1,7 @@
-import { UserPropsType, UserType } from './types';
+import { UsersType, UserType } from './types';
 import { SORT_BY_BIRTHDAY } from './constants';
 
-export const sortUsers = (users: UserPropsType, sortBy: string): UserPropsType => {
+export const sortUsers = (users: UsersType, sortBy: string): UsersType => {
   const sorted = [...users];
   
   return sorted.sort((a: UserType, b: UserType) =>
@@ -10,3 +10,9 @@ export const sortUsers = (users: UserPropsType, sortBy: string): UserPropsType =
       : a.firstName.localeCompare(b.firstName)
   );
 };
+
+export const filterUsersByDepartment = (users: UsersType, departmentFilter: string) => {
+  return users.filter(user => 
+    departmentFilter === 'all' || user.department === departmentFilter
+  )
+}
