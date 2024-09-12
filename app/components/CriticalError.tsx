@@ -5,7 +5,6 @@ import UFO from '../../public/images/ufo.png';
 
 const StyledCriticalErrorContainer = styled.section`
   width: 100%;
-  height: 100vh;
   display: flex;
   justify-content: center;
   padding: 16px;
@@ -16,6 +15,7 @@ const StyledCriticalError = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-top: 100px;
 `;
 
 const StyledCriticalErrorTextBlock = styled.div`

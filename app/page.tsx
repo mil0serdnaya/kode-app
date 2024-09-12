@@ -35,8 +35,7 @@ export default function Page() {
 
   return (
     <StyledContainer>
-      <CriticalError />
-      {/* <TopBar 
+      <TopBar 
         filterText={filterText}
         sortBy={sortBy}
         onFilterTextChange={setFilterText}
@@ -45,7 +44,7 @@ export default function Page() {
 
       {!error && <Users users={sortedUsers} isLoading={loading}/>}
 
-      {error && <CriticalError />} */}
+      {error && <CriticalError />}
     </StyledContainer>
   );
 }

@@ -2,8 +2,8 @@
 import { useState } from "react";
 import { styled } from 'styled-components';
 import Image from 'next/image';
-import SortIcon from '../../public/images/icons/sort.svg';
-import SearchIcon from '../../public/images/icons/search.svg';
+import SortIcon from '../../public/icons/sort.svg';
+import SearchIcon from '../../public/icons/search.svg';
 import { Sorting } from './Sorting';
 
 const StyledHeader = styled.header`
