@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from "react";
 import { StyledContainer } from "./components/styled/StyledContainer";
 import { TopBar } from "./components/TopBar";
 import { Users } from "./components/Users";
+import { CriticalError } from "./components/CriticalError";
 import { UsersType } from './lib/types';
 import { SORT_ALPHABETICALLY } from './lib/constants';
 import { fetchUsers } from './lib/services/userService';
@@ -34,7 +35,8 @@ export default function Page() {
 
   return (
     <StyledContainer>
-      <TopBar 
+      <CriticalError />
+      {/* <TopBar 
         filterText={filterText}
         sortBy={sortBy}
         onFilterTextChange={setFilterText}
@@ -42,8 +44,8 @@ export default function Page() {
       />
 
       {!error && <Users users={sortedUsers} isLoading={loading}/>}
-      
-      {error && <p>Ошибка загрузки данных</p>}
+
+      {error && <CriticalError />} */}
     </StyledContainer>
   );
 }
