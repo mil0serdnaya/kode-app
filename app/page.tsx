@@ -24,7 +24,7 @@ export default function Page() {
       setError(true);
       setUsers([]);
     } finally {
-      // setLoading(false);
+      setLoading(false);
     }
   }
 
@@ -41,8 +41,8 @@ export default function Page() {
         onSortByChange={setSortBy}
       />
 
-      {!error && sortedUsers.length > 0 && <Users users={sortedUsers} isLoading={loading}/>}
-
+      {!error && <Users users={sortedUsers} isLoading={loading}/>}
+      
       {error && <p>Ошибка загрузки данных</p>}
     </StyledContainer>
   );

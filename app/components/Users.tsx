@@ -3,17 +3,12 @@ import { useState, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { Tabs } from './Tabs';
 import { User } from './User';
-import { UserLoading } from './UserLoading';
 import { UsersType } from '../lib/types';
-import { filterUsersByDepartment } from '../lib/utils'
+import { filterUsersByDepartment, renderUserPlaceholders } from '../lib/utils';
 
 const StyledUsersContainer = styled.div`
   padding: 16px;
 `;
-
-const renderLoadingState = () => (
-  Array.from({length: 8}).map((el, index) => <UserLoading key={index} />)
-)
 
 export const Users = ({
   users,
@@ -25,14 +20,20 @@ export const Users = ({
   const [departmentFilter, setDepartmentFilter] = useState('all');
   const filteredUsers = useMemo(() => filterUsersByDepartment(users, departmentFilter), [users, departmentFilter]);
 
+  if (isLoading) {
+    return (
+      <section>
+        <Tabs onDepartmentChange={setDepartmentFilter} />
+        <StyledUsersContainer>{renderUserPlaceholders(8)}</StyledUsersContainer>
+      </section>
+    );
+  }
+  
   return (
     <section>
       <Tabs onDepartmentChange={setDepartmentFilter}/>
       <StyledUsersContainer>
-        { isLoading && renderLoadingState() }
-
-        { filteredUsers.length > 0 && !isLoading ? (
-          filteredUsers.map(user => (
+        {filteredUsers.map(user => (
             <User
               key={user.id}
               firstName={user.firstName}
@@ -40,10 +41,7 @@ export const Users = ({
               userTag={user.userTag}
               department={user.department}
             />
-          ))
-        ) : (
-          !isLoading && <p>No users to display</p>
-        )}
+          ))}
       </StyledUsersContainer>
     </section>
   );
