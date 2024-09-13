@@ -46,7 +46,7 @@ const StyledCriticalErrorLink= styled.a`
   cursor: pointer;
 `;
 
-export const CriticalError = () => {
+export const CriticalError = ({onRetry}: {onRetry: () => void}) => {
   return (
     <StyledCriticalErrorContainer>
       <StyledCriticalError>
@@ -59,7 +59,7 @@ export const CriticalError = () => {
         <StyledCriticalErrorTextBlock>
           <StyledCriticalErrorTitle>Some superintelligence has broken everything</StyledCriticalErrorTitle>
           <StyledCriticalErrorSubtitle>We will try to fix it quickly</StyledCriticalErrorSubtitle>
-          <StyledCriticalErrorLink>Try again</StyledCriticalErrorLink>
+          <StyledCriticalErrorLink onClick={onRetry}>Try again</StyledCriticalErrorLink>
         </StyledCriticalErrorTextBlock>
       </StyledCriticalError>
     </StyledCriticalErrorContainer>

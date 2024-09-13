@@ -1,9 +1,8 @@
 'use client';
-import { useState, useEffect, useMemo } from "react";
-import { StyledContainer } from "./components/styled/StyledContainer";
-import { TopBar } from "./components/TopBar";
-import { Users } from "./components/Users";
-import { CriticalError } from "./components/CriticalError";
+import { useState, useEffect, useMemo } from 'react';
+import { StyledContainer } from './components/styled/StyledContainer';
+import { TopBar } from './components/TopBar';
+import { Users } from './components/Users';
 import { UsersType } from './lib/types';
 import { SORT_ALPHABETICALLY } from './lib/constants';
 import { fetchUsers } from './lib/services/userService';
@@ -17,20 +16,20 @@ export default function Page() {
   const [sortBy, setSortBy] = useState(SORT_ALPHABETICALLY);
   const sortedUsers = useMemo(() => sortUsers(users,sortBy), [users, sortBy]);
 
-  const setUsersData = async () => {
+  const loadUsers = async () => {
+    setLoading(true)
     try {
-      const usersData = await fetchUsers();
-      setUsers(usersData);
+      const usersData = await fetchUsers()
+      setUsers(usersData)
     } catch (error) {
-      setError(true);
-      setUsers([]);
+      setError(true)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
   }
 
   useEffect(() => {
-    setUsersData();
+    loadUsers()
   }, []);
 
   return (
@@ -41,10 +40,12 @@ export default function Page() {
         onFilterTextChange={setFilterText}
         onSortByChange={setSortBy}
       />
-
-      {!error && <Users users={sortedUsers} isLoading={loading}/>}
-
-      {error && <CriticalError />}
+      <Users 
+        users={sortedUsers} 
+        isLoading={loading} 
+        isError={error}
+        onRetry={loadUsers}
+      />
     </StyledContainer>
   );
 }

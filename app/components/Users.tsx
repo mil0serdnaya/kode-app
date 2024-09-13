@@ -3,7 +3,8 @@ import { useState, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { Tabs } from './Tabs';
 import { User } from './User';
-import { UsersType } from '../lib/types';
+import { CriticalError } from './CriticalError';
+import { UsersProps } from '../lib/types';
 import { filterUsersByDepartment, renderUserPlaceholders } from '../lib/utils';
 
 const StyledUsersContainer = styled.div`
@@ -12,11 +13,11 @@ const StyledUsersContainer = styled.div`
 
 export const Users = ({
   users,
-  isLoading
-}: {
-  users: UsersType;
-  isLoading: boolean
-}) => {
+  isLoading,
+  isError,
+  onRetry
+} : UsersProps
+) => {
   const [departmentFilter, setDepartmentFilter] = useState('all');
   const filteredUsers = useMemo(() => filterUsersByDepartment(users, departmentFilter), [users, departmentFilter]);
 
@@ -25,6 +26,17 @@ export const Users = ({
       <section>
         <Tabs onDepartmentChange={setDepartmentFilter} />
         <StyledUsersContainer>{renderUserPlaceholders(8)}</StyledUsersContainer>
+      </section>
+    );
+  }
+
+  if (isError) {
+    return (
+      <section>
+        <Tabs onDepartmentChange={setDepartmentFilter} />
+        <StyledUsersContainer>
+          <CriticalError onRetry={onRetry} />
+        </StyledUsersContainer>
       </section>
     );
   }

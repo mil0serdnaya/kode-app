@@ -17,3 +17,10 @@ export type UserType = {
 }
 
 export type UsersType = UserType[]; 
+
+export type UsersProps = {
+  users: UsersType;
+  isLoading: boolean;
+  isError: boolean;
+  onRetry: () => void;
+}
