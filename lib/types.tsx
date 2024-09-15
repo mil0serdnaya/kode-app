@@ -24,3 +24,7 @@ export type UsersProps = {
   isError: boolean;
   onRetry: () => void;
 }
+
+export type TabsProps = {
+  onDepartmentChange: (department: string) => void;
+}
