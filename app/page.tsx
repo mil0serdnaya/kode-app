@@ -1,12 +1,12 @@
 'use client';
 import { useState, useEffect, useMemo } from 'react';
 import { StyledContainer } from './components/styled/StyledContainer';
-import { TopBar } from './components/TopBar';
-import { Users } from './components/Users';
-import { UsersType } from './lib/types';
-import { SORT_ALPHABETICALLY } from './lib/constants';
-import { fetchUsers } from './lib/services/userService';
-import { sortUsers } from './lib/utils';
+import { TopBar } from './components/shared/TopBar';
+import { Users } from './components/users/Users';
+import { UsersType } from '../lib/types';
+import { SORT_ALPHABETICALLY } from '../lib/constants';
+import { fetchUsers } from '../lib/services/userService';
+import { sortUsers } from '../lib/utils';
 
 export default function Page() {
   const [users, setUsers] = useState<UsersType>([]);

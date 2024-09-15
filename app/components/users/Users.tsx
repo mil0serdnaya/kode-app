@@ -1,11 +1,11 @@
 'use client';
 import { useState, useMemo } from 'react';
 import { styled } from 'styled-components';
-import { Tabs } from './Tabs';
+import { Tabs } from '../shared/Tabs';
 import { User } from './User';
-import { CriticalError } from './CriticalError';
-import { UsersProps } from '../lib/types';
-import { filterUsersByDepartment, renderUserPlaceholders } from '../lib/utils';
+import { CriticalError } from '../shared/CriticalError';
+import { UsersProps } from '../../../lib/types';
+import { filterUsersByDepartment, renderUserPlaceholders } from '../../../lib/utils';
 
 const StyledUsersContainer = styled.div`
   padding: 16px;

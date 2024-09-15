@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { styled } from 'styled-components';
-import { TabsType } from '../lib/types';
+import { TabsType } from '../../../lib/types';
 
 const TABS: TabsType[] = [
   {
