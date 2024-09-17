@@ -1,11 +1,12 @@
 'use client';
+
 import { useState } from "react";
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import Image from 'next/image';
+import { TopBarProps } from '../../../lib/types';
 import SortIcon from '../../../public/icons/sort.svg';
 import SearchIcon from '../../../public/icons/search.svg';
 import { Sorting } from './Sorting';
-import { TopBarProps } from '../../../lib/types';
 
 const StyledHeader = styled.header`
   padding: 16px;
@@ -57,10 +58,10 @@ export const TopBar: React.FC<TopBarProps> = ({
   onFilterTextChange,
   onSortByChange
 }) => {
-  const [isSortVisible, setSortVisible] = useState<boolean>(false);
+  const [isSortVisivle, setSortVisible] = useState<boolean>(false);
 
   const handleFilterTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onFilterTextChange(e.target.value);
+    onFilterTextChange(e.target.value)
   };
 
   const toggleSortVisibility = () => {
@@ -80,14 +81,14 @@ export const TopBar: React.FC<TopBarProps> = ({
           value={filterText}
           onChange={handleFilterTextChange}
           placeholder="Search by name, tag, email..."/>
-        <StyledSortBtn onClick={toggleSortVisibility}>
+        <StyledSortBtn onClick={() => setSortVisible(!isSortVisivle)}>
           <Image
             src={SortIcon}
             alt="Sort icon"
           />
         </StyledSortBtn>
       </StyledSearchWrapper>
-      {isSortVisible && 
+      {isSortVisivle && 
         <Sorting 
           onSortVisibleChange={setSortVisible} 
           onSortByChange={onSortByChange}

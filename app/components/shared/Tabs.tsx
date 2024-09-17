@@ -1,9 +1,9 @@
 'use client';
 import { useState } from 'react';
 import { styled } from 'styled-components';
-import { TabsType } from '../../../lib/types';
+import { Tab } from '../../../lib/types';
 
-const TABS: TabsType[] = [
+const TABS: Tab[] = [
   { id: 1, name: 'All', department: 'all' },
   { id: 2, name: 'Designers', department: 'design' },
   { id: 3, name: 'Analytics', department: 'analytics' },

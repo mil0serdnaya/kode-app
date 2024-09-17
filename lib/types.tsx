@@ -1,4 +1,4 @@
-export type TabsType = {
+export type Tab = {
   id: number;
   name: string;
   department: string;
@@ -31,4 +31,11 @@ export type TabsProps = {
 
 export type CriticalErrorProps = {
   onRetry: () => void;
+}
+
+export type TopBarProps = {
+  filterText: string;
+  sortBy: string;
+  onFilterTextChange: React.Dispatch<React.SetStateAction<string>>;
+  onSortByChange: React.Dispatch<React.SetStateAction<string>>;
 }
