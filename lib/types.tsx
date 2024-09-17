@@ -39,3 +39,9 @@ export type TopBarProps = {
   onFilterTextChange: React.Dispatch<React.SetStateAction<string>>;
   onSortByChange: React.Dispatch<React.SetStateAction<string>>;
 }
+
+export type SortingProps = {
+  sortBy: string;
+  onSortVisibleChange: React.Dispatch<React.SetStateAction<boolean>>;
+  onSortByChange: React.Dispatch<React.SetStateAction<string>>;
+}

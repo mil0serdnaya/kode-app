@@ -3,11 +3,12 @@ import { styled } from 'styled-components';
 import Image from 'next/image';
 import CrossIcon from '../../../public/icons/cross.svg';
 import { SORT_ALPHABETICALLY, SORT_BY_BIRTHDAY } from '../../../lib/constants';
+import { SortingProps } from '../../../lib/types';
 
 const StyledOverlay = styled.div`
   width: 100%;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
@@ -88,20 +89,16 @@ const StyledLabel = styled.label`
   }
 `;
 
-export const Sorting = ({
+export const Sorting: React.FC<SortingProps> = ({
   sortBy,
   onSortVisibleChange,
   onSortByChange
-}:{
-  sortBy: string;
-  onSortVisibleChange: React.Dispatch<React.SetStateAction<boolean>>;
-  onSortByChange: React.Dispatch<React.SetStateAction<string>>;
 }) => {
-
-  const onRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onSortByChange(e.target.value)
-    onSortVisibleChange(false)
-  }
+  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    onSortByChange(value);
+    onSortVisibleChange(false);
+  };
 
   return (
     <StyledOverlay>
@@ -124,7 +121,7 @@ export const Sorting = ({
               name="sort" 
               checked={sortBy === SORT_ALPHABETICALLY}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                onRadioChange(e);
+                handleRadioChange(e);
               }}/>
             <StyledLabel htmlFor="alphabetically"> Alphabetically </StyledLabel>
           </StyledFormRow>
@@ -136,7 +133,7 @@ export const Sorting = ({
               name="sort" 
               checked={sortBy === SORT_BY_BIRTHDAY}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                onRadioChange(e);
+                handleRadioChange(e);
               }}/>
             <StyledLabel htmlFor="birthday"> By birthday </StyledLabel>
           </StyledFormRow>
