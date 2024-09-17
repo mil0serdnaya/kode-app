@@ -28,3 +28,7 @@ export type UsersProps = {
 export type TabsProps = {
   onDepartmentChange: (department: string) => void;
 }
+
+export type CriticalErrorProps = {
+  onRetry: () => void;
+}

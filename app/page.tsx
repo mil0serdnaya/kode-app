@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect, useMemo } from 'react';
-import { StyledContainer } from './components/styled/StyledContainer';
+import { StyledContainer } from './components/shared/styled/StyledContainer';
 import { TopBar } from './components/shared/TopBar';
 import { Users } from './components/users/Users';
 import { UsersType } from '../lib/types';

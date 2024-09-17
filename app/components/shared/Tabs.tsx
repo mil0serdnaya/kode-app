@@ -25,7 +25,7 @@ const StyledTabs = styled.div`
   border-bottom: 1px solid #C3C3C6;
 `;
 
-const StyledTab = styled.div<{$isActive: boolean}>`
+const StyledTab = styled.div<{ $isActive: boolean }>`
   padding: 8px 12px;
   font-size: 15px;
   font-weight: 500;
