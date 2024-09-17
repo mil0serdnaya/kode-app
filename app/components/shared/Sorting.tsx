@@ -1,7 +1,7 @@
 'use client';
 import { styled } from 'styled-components';
 import Image from 'next/image';
-import CrossIcon from '../../public/icons/cross.svg';
+import CrossIcon from '../../../public/icons/cross.svg';
 import { SORT_ALPHABETICALLY, SORT_BY_BIRTHDAY } from '../../../lib/constants';
 
 const StyledOverlay = styled.div`

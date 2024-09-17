@@ -1,7 +1,7 @@
 'use client';
 import { styled } from 'styled-components';
 import Image from 'next/image';
-import UFO from '../../public/images/ufo.png';
+import UFO from '../../../public/images/ufo.png';
 
 const StyledCriticalErrorContainer = styled.section`
   width: 100%;

@@ -25,14 +25,14 @@ const StyledTabs = styled.div`
   border-bottom: 1px solid #C3C3C6;
 `;
 
-const StyledTab = styled.div<{isActive: boolean}>`
+const StyledTab = styled.div<{$isActive: boolean}>`
   padding: 8px 12px;
   font-size: 15px;
   font-weight: 500;
   line-height: 20px;
-  color: ${({ isActive }) => (isActive ? '050510' : '#97979B')};
+  color: ${({ $isActive }) => ($isActive ? '050510' : '#97979B')};
   cursor: pointer;
-  border-bottom: 2px solid ${({ isActive }) => (isActive ? '#6534FF' : 'transparent')};
+  border-bottom: 2px solid ${({ $isActive }) => ($isActive ? '#6534FF' : 'transparent')};
   transition: all 0.2s;
 
   &:hover {
@@ -58,7 +58,7 @@ export const Tabs = ({
         return (
           <StyledTab 
             key={tab.id} 
-            isActive={activeId === tab.id}
+            $isActive={activeId === tab.id}
             onClick={() => handleClick(tab.id, tab.department)}>
             {tab.name}
           </StyledTab>

@@ -1,6 +1,6 @@
 import { UsersType, UserType } from './types';
 import { SORT_BY_BIRTHDAY } from './constants';
-import { UserPlaceholder } from '../components/UserPlaceholder';
+import { UserPlaceholder } from '../app/components/users/UserPlaceholder';
 
 export const sortUsers = (users: UsersType, sortBy: string): UsersType => {
   const sorted = [...users];
