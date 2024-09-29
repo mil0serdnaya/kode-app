@@ -25,6 +25,15 @@ export type UsersProps = {
   onRetry: () => void;
 }
 
+export type UsersState = {
+  users: UsersType;
+  sortedUsers: UsersType;
+  filterText: string;
+  sortBy: string;
+  loading: boolean;
+  error: boolean;
+}
+
 export type TabsProps = {
   onDepartmentChange: (department: string) => void;
 }
