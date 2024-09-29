@@ -25,6 +25,7 @@ export default function Page() {
       setError(true)
     } finally {
       setLoading(false)
+      console.log(users)
     }
   }
 
