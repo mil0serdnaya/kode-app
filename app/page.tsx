@@ -1,53 +1,44 @@
 'use client';
-import { useState, useEffect, useMemo } from 'react';
-import { StyledContainer } from './components/shared/styled/StyledContainer';
-import { TopBar } from './components/shared/TopBar';
-import { Users } from './components/users/Users';
-import { UsersType } from '../lib/types';
-import { SORT_ALPHABETICALLY } from '../lib/constants';
-import { fetchUsers } from '../lib/services/userService';
-import { sortUsers } from '../lib/utils';
+
+import { useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { StyledContainer } from "./components/shared/styled/StyledContainer";
+import { TopBar } from "./components/shared/TopBar";
+import { Users } from "./components/users/Users";
+import { RootState, AppDispatch } from "../redux/store";
+import { loadUsers, setFilterText, setSortBy } from "../redux/usersSlice";
+import { sortUsers, filterUsers } from "../lib/utils";
 
 export default function Page() {
-  const [users, setUsers] = useState<UsersType>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [filterText, setFilterText] = useState('');
-  const [sortBy, setSortBy] = useState(SORT_ALPHABETICALLY);
-  const sortedUsers = useMemo(() => sortUsers(users,sortBy), [users, sortBy]);
+  const dispatch: AppDispatch = useDispatch();
 
-  const loadUsers = async () => {
-    setLoading(true)
-    try {
-      const usersData = await fetchUsers()
-      setUsers(usersData)
-    } catch (error) {
-      setError(true)
-    } finally {
-      setLoading(false)
-      console.log(users)
-    }
-  }
+  const { users, loading, error, filterText, sortBy } = useSelector(
+    (state: RootState) => state.users
+  );
 
   useEffect(() => {
-    loadUsers()
-  }, []);
+    dispatch(loadUsers());
+  }, [dispatch]);
+
+  const filteredAndSortedUsers = useMemo(() => {
+    const filtered = filterUsers(users, filterText);
+    return sortUsers(filtered, sortBy);
+  }, [users, filterText, sortBy]);
 
   return (
     <StyledContainer>
-      <TopBar 
+      <TopBar
         filterText={filterText}
         sortBy={sortBy}
-        onFilterTextChange={setFilterText}
-        onSortByChange={setSortBy}
+        onFilterTextChange={(text) => dispatch(setFilterText(text))}
+        onSortByChange={(sort) => dispatch(setSortBy(sort))}
       />
-      <Users 
-        users={sortedUsers} 
-        isLoading={loading} 
+      <Users
+        users={filteredAndSortedUsers}
+        isLoading={loading}
         isError={error}
-        onRetry={loadUsers}
+        onRetry={() => dispatch(loadUsers())}
       />
     </StyledContainer>
   );
 }
-

@@ -26,8 +26,7 @@ export type UsersProps = {
 }
 
 export type UsersState = {
-  users: UsersType;
-  sortedUsers: UsersType;
+  users: UserType[];
   filterText: string;
   sortBy: string;
   loading: boolean;
@@ -45,12 +44,12 @@ export type CriticalErrorProps = {
 export type TopBarProps = {
   filterText: string;
   sortBy: string;
-  onFilterTextChange: React.Dispatch<React.SetStateAction<string>>;
-  onSortByChange: React.Dispatch<React.SetStateAction<string>>;
+  onFilterTextChange: (text: string) => void;
+  onSortByChange: (sort: string) => void;
 }
 
 export type SortingProps = {
   sortBy: string;
   onSortVisibleChange: React.Dispatch<React.SetStateAction<boolean>>;
-  onSortByChange: React.Dispatch<React.SetStateAction<string>>;
+  onSortByChange: (sort: string) => void;
 }

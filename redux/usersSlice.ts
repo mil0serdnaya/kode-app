@@ -1,32 +1,34 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { fetchUsers } from '../lib/services/userService';
-import { sortUsers } from '../lib/utils';
-import { UsersType, UsersState } from '../lib/types';
+// usersSlice.ts
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { fetchUsers } from "../lib/services/userService";
+import { UsersType, UsersState } from "../lib/types";
+import { sortUsers, filterUsers } from "../lib/utils";
 
-export const loadUsers = createAsyncThunk<UsersType>('users/loadUsers', async () => {
-  const usersData = await fetchUsers();
-  return usersData;
-});
+export const loadUsers = createAsyncThunk<UsersType>(
+  "users/loadUsers",
+  async () => {
+    const usersData = await fetchUsers();
+    return usersData;
+  }
+);
 
 const initialState: UsersState = {
   users: [],
-  sortedUsers: [],
-  filterText: '',
-  sortBy: 'alphabetically',
+  filterText: "",
+  sortBy: "alphabetically",
   loading: false,
   error: false,
 };
 
 const usersSlice = createSlice({
-  name: 'users',
+  name: "users",
   initialState,
   reducers: {
-    setFilterText(state, action: PayloadAction<string>) {
+    setFilterText: (state, action: PayloadAction<string>) => {
       state.filterText = action.payload;
     },
-    setSortBy(state, action: PayloadAction<string>) {
+    setSortBy: (state, action: PayloadAction<string>) => {
       state.sortBy = action.payload;
-      state.sortedUsers = sortUsers(state.users, action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -37,7 +39,6 @@ const usersSlice = createSlice({
       })
       .addCase(loadUsers.fulfilled, (state, action: PayloadAction<UsersType>) => {
         state.users = action.payload;
-        state.sortedUsers = sortUsers(action.payload, state.sortBy);
         state.loading = false;
       })
       .addCase(loadUsers.rejected, (state) => {

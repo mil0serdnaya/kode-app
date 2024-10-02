@@ -1,11 +1,12 @@
 'use client';
+
 import { useState } from "react";
-import { styled } from 'styled-components';
-import Image from 'next/image';
-import SortIcon from '../../../public/icons/sort.svg';
-import SearchIcon from '../../../public/icons/search.svg';
-import { Sorting } from './Sorting';
-import { TopBarProps } from '../../../lib/types';
+import { styled } from "styled-components";
+import Image from "next/image";
+import SortIcon from "../../../public/icons/sort.svg";
+import SearchIcon from "../../../public/icons/search.svg";
+import { Sorting } from "./Sorting";
+import { TopBarProps } from "../../../lib/types";
 
 const StyledHeader = styled.header`
   padding: 16px;
@@ -16,7 +17,7 @@ const StyledH1 = styled.h1`
   font-weight: 700;
   line-height: 28px;
   color: #050510;
-  padding: 0 0 20px 8px;
+  padding-bottom: 20px;
 `;
 
 const StyledSearchWrapper = styled.div`
@@ -26,8 +27,7 @@ const StyledSearchWrapper = styled.div`
 const StyledSearchInput = styled.input`
   padding: 8px 12px 8px 44px;
   width: 100%;
-  max-width: 100%;
-  background-color: #F7F7F8;
+  background-color: #f7f7f8;
   border-radius: 16px;
   font-size: 15px;
   line-height: 24px;
@@ -35,7 +35,7 @@ const StyledSearchInput = styled.input`
 
   ::placeholder {
     font-weight: 500;
-    color: #C3C3C6;
+    color: #c3c3c6;
   }
 `;
 
@@ -55,44 +55,32 @@ export const TopBar: React.FC<TopBarProps> = ({
   filterText,
   sortBy,
   onFilterTextChange,
-  onSortByChange
+  onSortByChange,
 }) => {
-  const [isSortVisible, setSortVisible] = useState<boolean>(false);
-
-  const handleFilterTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onFilterTextChange(e.target.value);
-  };
-
-  const toggleSortVisibility = () => {
-    setSortVisible(prev => !prev);
-  };
+  const [isSortVisible, setSortVisible] = useState(false);
 
   return (
     <StyledHeader>
       <StyledH1>Search</StyledH1>
       <StyledSearchWrapper>
-        <StyledSearchIcon
-          src={SearchIcon}
-          alt="Search icon"
-        />
-        <StyledSearchInput 
-          type="text" 
+        <StyledSearchIcon src={SearchIcon} alt="Search icon" />
+        <StyledSearchInput
+          type="text"
           value={filterText}
-          onChange={handleFilterTextChange}
-          placeholder="Search by name, tag, email..."/>
-        <StyledSortBtn onClick={toggleSortVisibility}>
-          <Image
-            src={SortIcon}
-            alt="Sort icon"
-          />
+          onChange={(e) => onFilterTextChange(e.target.value)}
+          placeholder="Search by name, tag, email..."
+        />
+        <StyledSortBtn onClick={() => setSortVisible((prev) => !prev)}>
+          <Image src={SortIcon} alt="Sort icon" />
         </StyledSortBtn>
       </StyledSearchWrapper>
-      {isSortVisible && 
-        <Sorting 
-          onSortVisibleChange={setSortVisible} 
+      {isSortVisible && (
+        <Sorting
+          onSortVisibleChange={setSortVisible}
           onSortByChange={onSortByChange}
           sortBy={sortBy}
-        />}
+        />
+      )}
     </StyledHeader>
   );
-}
+};

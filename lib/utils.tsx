@@ -21,3 +21,12 @@ export const filterUsersByDepartment = (users: UsersType, departmentFilter: stri
 export const renderUserPlaceholders = (count: number) => (
   Array.from({ length: count }).map((el, index) => <UserPlaceholder key={index} />)
 );
+
+export const filterUsers = (users: UserType[], filterText: string): UserType[] => {
+  if (!filterText) return users;
+  return users.filter(user =>
+    user.firstName.toLowerCase().includes(filterText.toLowerCase()) ||
+    user.lastName.toLowerCase().includes(filterText.toLowerCase()) ||
+    user.userTag.toLowerCase().includes(filterText.toLowerCase())
+  );
+};
