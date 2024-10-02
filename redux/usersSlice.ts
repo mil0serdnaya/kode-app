@@ -1,8 +1,7 @@
-// usersSlice.ts
+
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { fetchUsers } from "../lib/services/userService";
 import { UsersType, UsersState } from "../lib/types";
-import { sortUsers, filterUsers } from "../lib/utils";
 
 export const loadUsers = createAsyncThunk<UsersType>(
   "users/loadUsers",
