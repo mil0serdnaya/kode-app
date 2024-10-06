@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 import { Tabs } from '../shared/Tabs';
 import { User } from './User';
 import { CriticalError } from '../shared/CriticalError';
+import { SearchError } from '../shared/SearchError';
 import { UsersProps } from '../../../lib/types';
 import { filterUsersByDepartment, renderUserPlaceholders } from '../../../lib/utils';
 
@@ -15,7 +16,8 @@ export const Users = ({
   users,
   isLoading,
   isError,
-  onRetry
+  onRetry,
+  searchError
 } : UsersProps
 ) => {
   const [departmentFilter, setDepartmentFilter] = useState('all');
@@ -36,6 +38,17 @@ export const Users = ({
         <Tabs onDepartmentChange={setDepartmentFilter} />
         <StyledUsersContainer>
           <CriticalError onRetry={onRetry} />
+        </StyledUsersContainer>
+      </section>
+    );
+  }
+
+  if (searchError) {
+    return (
+      <section>
+        <Tabs onDepartmentChange={setDepartmentFilter} />
+        <StyledUsersContainer>
+          <SearchError />
         </StyledUsersContainer>
       </section>
     );

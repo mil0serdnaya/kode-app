@@ -22,6 +22,7 @@ export type UsersProps = {
   users: UsersType;
   isLoading: boolean;
   isError: boolean;
+  searchError: boolean;
   onRetry: () => void;
 }
 
@@ -31,6 +32,7 @@ export type UsersState = {
   sortBy: string;
   loading: boolean;
   error: boolean;
+  searchError: boolean;
 }
 
 export type TabsProps = {

@@ -17,6 +17,7 @@ const initialState: UsersState = {
   sortBy: "alphabetically",
   loading: false,
   error: false,
+  searchError: false
 };
 
 const usersSlice = createSlice({
@@ -29,12 +30,16 @@ const usersSlice = createSlice({
     setSortBy: (state, action: PayloadAction<string>) => {
       state.sortBy = action.payload;
     },
+    setSearchError: (state, action: PayloadAction<boolean>) => {
+      state.searchError = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(loadUsers.pending, (state) => {
         state.loading = true;
         state.error = false;
+        state.searchError = false;
       })
       .addCase(loadUsers.fulfilled, (state, action: PayloadAction<UsersType>) => {
         state.users = action.payload;
@@ -47,5 +52,5 @@ const usersSlice = createSlice({
   },
 });
 
-export const { setFilterText, setSortBy } = usersSlice.actions;
+export const { setFilterText, setSortBy, setSearchError } = usersSlice.actions;
 export default usersSlice.reducer;

@@ -6,24 +6,32 @@ import { StyledContainer } from "./components/shared/styled/StyledContainer";
 import { TopBar } from "./components/shared/TopBar";
 import { Users } from "./components/users/Users";
 import { RootState, AppDispatch } from "../redux/store";
-import { loadUsers, setFilterText, setSortBy } from "../redux/usersSlice";
+import { loadUsers, setFilterText, setSortBy, setSearchError } from "../redux/usersSlice";  // Импортируем setSearchError
 import { sortUsers, filterUsers } from "../lib/utils";
 
 export default function Page() {
   const dispatch: AppDispatch = useDispatch();
 
-  const { users, loading, error, filterText, sortBy } = useSelector(
+  const { users, loading, error, filterText, sortBy, searchError } = useSelector(
     (state: RootState) => state.users
   );
-
-  useEffect(() => {
-    dispatch(loadUsers());
-  }, [dispatch]);
 
   const filteredAndSortedUsers = useMemo(() => {
     const filtered = filterUsers(users, filterText);
     return sortUsers(filtered, sortBy);
   }, [users, filterText, sortBy]);
+
+  useEffect(() => {
+    dispatch(loadUsers());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (filterText && filteredAndSortedUsers.length === 0) {
+      dispatch(setSearchError(true));
+    } else {
+      dispatch(setSearchError(false));
+    }
+  }, [filteredAndSortedUsers, filterText, dispatch]); 
 
   return (
     <StyledContainer>
@@ -37,8 +45,10 @@ export default function Page() {
         users={filteredAndSortedUsers}
         isLoading={loading}
         isError={error}
+        searchError={searchError}  
         onRetry={() => dispatch(loadUsers())}
       />
     </StyledContainer>
   );
 }
+

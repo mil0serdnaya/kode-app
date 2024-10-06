@@ -24,6 +24,7 @@ export const renderUserPlaceholders = (count: number) => (
 
 export const filterUsers = (users: UserType[], filterText: string): UserType[] => {
   if (!filterText) return users;
+  
   return users.filter(user =>
     user.firstName.toLowerCase().includes(filterText.toLowerCase()) ||
     user.lastName.toLowerCase().includes(filterText.toLowerCase()) ||
