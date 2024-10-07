@@ -33,6 +33,10 @@ const StyledSearchInput = styled.input`
   line-height: 24px;
   color: #050510;
 
+  &:focus ~ .search-icon {
+    filter: brightness(0) saturate(100%) invert(6%) sepia(96%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(99%);
+  }
+
   ::placeholder {
     font-weight: 500;
     color: #c3c3c6;
@@ -49,6 +53,7 @@ const StyledSearchIcon = styled(Image)`
   position: absolute;
   top: 8px;
   left: 12px;
+  transition: filter 0.2s ease-in-out;
 `;
 
 export const TopBar: React.FC<TopBarProps> = ({
@@ -63,12 +68,16 @@ export const TopBar: React.FC<TopBarProps> = ({
     <StyledHeader>
       <StyledH1>Search</StyledH1>
       <StyledSearchWrapper>
-        <StyledSearchIcon src={SearchIcon} alt="Search icon" />
         <StyledSearchInput
           type="text"
           value={filterText}
           onChange={(e) => onFilterTextChange(e.target.value)}
           placeholder="Search by name, tag, email..."
+        />
+        <StyledSearchIcon
+          src={SearchIcon}
+          alt="Search icon"
+          className="search-icon"
         />
         <StyledSortBtn onClick={() => setSortVisible((prev) => !prev)}>
           <Image src={SortIcon} alt="Sort icon" />
