@@ -1,22 +1,23 @@
 'use client';
 import { useState } from 'react';
 import { styled } from 'styled-components';
-import { Tab } from '../../../lib/types';
+import { Tab, TabsProps } from '../../../lib/types';
+import { departmentMap } from '../../../lib/utils';
 
 const TABS: Tab[] = [
-  { id: 1, name: 'All', department: 'all' },
-  { id: 2, name: 'Designers', department: 'design' },
-  { id: 3, name: 'Analytics', department: 'analytics' },
-  { id: 4, name: 'Management', department: 'management' },
-  { id: 5, name: 'iOS', department: 'ios' },
-  { id: 6, name: 'Android', department: 'android' },
-  { id: 7, name: 'Support', department: 'support' },
-  { id: 8, name: 'Frontend', department: 'frontend' },
-  { id: 9, name: 'Back-office', department: 'back_office' },
-  { id: 10, name: 'PR', department: 'pr' },
-  { id: 11, name: 'QA', department: 'qa' },
-  { id: 12, name: 'HR', department: 'hr' },
-  { id: 13, name: 'Backend', department: 'backend' }
+  { id: 1, department: 'all' },
+  { id: 2, department: 'design' },
+  { id: 3, department: 'analytics' },
+  { id: 4, department: 'management' },
+  { id: 5, department: 'ios' },
+  { id: 6, department: 'android' },
+  { id: 7, department: 'support' },
+  { id: 8, department: 'frontend' },
+  { id: 9, department: 'back_office' },
+  { id: 10, department: 'pr' },
+  { id: 11, department: 'qa' },
+  { id: 12, department: 'hr' },
+  { id: 13, department: 'backend' }
 ];
 
 const StyledTabs = styled.div`
@@ -30,7 +31,7 @@ const StyledTab = styled.div<{ $isActive: boolean }>`
   font-size: 15px;
   font-weight: 500;
   line-height: 20px;
-  color: ${({ $isActive }) => ($isActive ? '050510' : '#97979B')};
+  color: ${({ $isActive }) => ($isActive ? '#050510' : '#97979B')};
   cursor: pointer;
   border-bottom: 2px solid ${({ $isActive }) => ($isActive ? '#6534FF' : 'transparent')};
   transition: all 0.2s;
@@ -40,30 +41,25 @@ const StyledTab = styled.div<{ $isActive: boolean }>`
   }
 `;
 
-export const Tabs = ({
-  onDepartmentChange,
-}:{
-  onDepartmentChange: React.Dispatch<React.SetStateAction<string>>
-}) => {
+export const Tabs = ({ onDepartmentChange }: TabsProps) => {
   const [activeId, setActiveId] = useState<number>(1);
 
   const handleClick = (id: number, department: string) => {
     setActiveId(id);
     onDepartmentChange(department);
-  }
+  };
 
   return (
     <StyledTabs>
-      {TABS.map((tab) => {
-        return (
-          <StyledTab 
-            key={tab.id} 
-            $isActive={activeId === tab.id}
-            onClick={() => handleClick(tab.id, tab.department)}>
-            {tab.name}
-          </StyledTab>
-        )
-      })}
+      {TABS.map(({ id, department }) => (
+        <StyledTab
+          key={id}
+          $isActive={activeId === id}
+          onClick={() => handleClick(id, department)}
+        >
+          {departmentMap[department] || department}
+        </StyledTab>
+      ))}
     </StyledTabs>
   );
-}
+};

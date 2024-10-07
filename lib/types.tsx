@@ -1,6 +1,5 @@
 export type Tab = {
   id: number;
-  name: string;
   department: string;
 }
 
@@ -36,7 +35,7 @@ export type UsersState = {
 }
 
 export type TabsProps = {
-  onDepartmentChange: (department: string) => void;
+  onDepartmentChange: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export type ErrorProps = {
