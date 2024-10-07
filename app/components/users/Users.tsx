@@ -3,8 +3,8 @@ import { useState, useMemo } from 'react';
 import { styled } from 'styled-components';
 import { Tabs } from '../shared/Tabs';
 import { User } from './User';
-import { CriticalError } from '../shared/CriticalError';
-import { SearchError } from '../shared/SearchError';
+import { CriticalError } from '../shared/errors/CriticalError';
+import { SearchError } from '../shared/errors/SearchError';
 import { UsersProps } from '../../../lib/types';
 import { filterUsersByDepartment, renderUserPlaceholders } from '../../../lib/utils';
 

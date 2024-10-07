@@ -6,7 +6,7 @@ import { StyledContainer } from "./components/shared/styled/StyledContainer";
 import { TopBar } from "./components/shared/TopBar";
 import { Users } from "./components/users/Users";
 import { RootState, AppDispatch } from "../redux/store";
-import { loadUsers, setFilterText, setSortBy, setSearchError } from "../redux/usersSlice";  // Импортируем setSearchError
+import { loadUsers, setFilterText, setSortBy, setSearchError } from "../redux/usersSlice"; 
 import { sortUsers, filterUsers } from "../lib/utils";
 
 export default function Page() {

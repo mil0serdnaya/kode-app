@@ -39,6 +39,15 @@ export type TabsProps = {
   onDepartmentChange: (department: string) => void;
 }
 
+export type ErrorProps = {
+  imageSrc: string;
+  altText: string;
+  title: string;
+  subtitle: string;
+  retryText?: string;
+  onRetry?: () => void;
+}
+
 export type CriticalErrorProps = {
   onRetry: () => void;
 }

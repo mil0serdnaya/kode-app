@@ -1,8 +1,7 @@
 'use client';
 import { styled } from 'styled-components';
-import { CriticalErrorProps } from '../../../lib/types'
 import Image from 'next/image';
-import UFO from '../../../public/images/ufo.png';
+import { ErrorProps } from '../../../../lib/types';
 
 const StyledErrorContainer = styled.section`
   width: 100%;
@@ -39,7 +38,7 @@ const StyledErrorSubtitle = styled.p`
   margin-bottom: 10px;
 `;
 
-const StyledErrorLink= styled.button`
+const StyledErrorLink = styled.button`
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;
@@ -50,23 +49,29 @@ const StyledErrorLink= styled.button`
   padding: 0;
 `;
 
-export const CriticalError: React.FC<CriticalErrorProps> = ({ onRetry }) => {
-  return (
-    <StyledErrorContainer>
-      <StyledErrorContent>
-        <Image
-          src={UFO}
-          alt="UFO image"
-          height={56}
-          width={56}
-          placeholder="blur"
-        />
-        <StyledErrorTextBlock>
-          <StyledErrorTitle>Some superintelligence has broken everything</StyledErrorTitle>
-          <StyledErrorSubtitle>We will try to fix it quickly</StyledErrorSubtitle>
-          <StyledErrorLink onClick={onRetry}>Try again</StyledErrorLink>
-        </StyledErrorTextBlock>
-      </StyledErrorContent>
-    </StyledErrorContainer>
-  );
-}
+export const Error: React.FC<ErrorProps> = ({
+  imageSrc, 
+  altText, 
+  title, 
+  subtitle, 
+  onRetry, 
+  retryText
+}) => (
+  <StyledErrorContainer>
+    <StyledErrorContent>
+      <Image
+        src={imageSrc}
+        alt={altText}
+        height={56}
+        width={56}
+      />
+      <StyledErrorTextBlock>
+        <StyledErrorTitle>{title}</StyledErrorTitle>
+        <StyledErrorSubtitle>{subtitle}</StyledErrorSubtitle>
+        {onRetry && retryText && (
+          <StyledErrorLink onClick={onRetry}>{retryText}</StyledErrorLink>
+        )}
+      </StyledErrorTextBlock>
+    </StyledErrorContent>
+  </StyledErrorContainer>
+);
