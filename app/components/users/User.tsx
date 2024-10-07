@@ -47,12 +47,12 @@ export const User = ({
   firstName,
   lastName,
   userTag,
-  department
+  position
 }:{
   firstName: string;
   lastName: string;
   userTag: string;
-  department: string;
+  position: string;
 }) => {
   return (
     <StyledUser>
@@ -62,7 +62,7 @@ export const User = ({
           <StyledUserName>{firstName} {lastName}</StyledUserName>
           <StyledUserTag>{userTag}</StyledUserTag>
         </div>
-        <StyledUserDepartment>{department}</StyledUserDepartment>
+        <StyledUserDepartment>{position}</StyledUserDepartment>
       </div>
     </StyledUser>
   );

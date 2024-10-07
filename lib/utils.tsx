@@ -1,22 +1,6 @@
 import { UsersType, UserType } from './types';
-import { SORT_BY_BIRTHDAY } from './constants';
+import { SORT_BY_BIRTHDAY, departmentMap } from './constants';
 import { UserPlaceholder } from '../app/components/users/UserPlaceholder';
-
-export const departmentMap: { [key: string]: string } = {
-  all: "All",
-  android: "Android",
-  ios: "iOS",
-  design: "Design",
-  management: "Management",
-  qa: "QA",
-  back_office: "Back-office",
-  frontend: "Frontend",
-  hr: "HR",
-  pr: "PR",
-  backend: "Backend",
-  support: "Support",
-  analytics: "Analytics",
-};
 
 export const sortUsers = (users: UsersType, sortBy: string): UsersType => {
   const sorted = [...users];

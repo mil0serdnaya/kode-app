@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { styled } from 'styled-components';
 import { Tab, TabsProps } from '../../../lib/types';
-import { departmentMap } from '../../../lib/utils';
+import { departmentMap } from '../../../lib/constants';
 
 const TABS: Tab[] = [
   { id: 1, department: 'all' },

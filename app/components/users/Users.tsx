@@ -6,7 +6,7 @@ import { User } from './User';
 import { CriticalError } from '../shared/errors/CriticalError';
 import { SearchError } from '../shared/errors/SearchError';
 import { UsersProps } from '../../../lib/types';
-import { filterUsersByDepartment, renderUserPlaceholders, getDepartmentName } from '../../../lib/utils';
+import { filterUsersByDepartment, renderUserPlaceholders } from '../../../lib/utils';
 
 const StyledUsersContainer = styled.div`
   padding: 16px;
@@ -64,7 +64,7 @@ export const Users = ({
               firstName={user.firstName}
               lastName={user.lastName}
               userTag={user.userTag}
-              department={getDepartmentName(user.department)}
+              position={user.position}
             />
           ))}
       </StyledUsersContainer>
