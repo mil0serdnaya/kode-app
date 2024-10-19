@@ -35,3 +35,5 @@ export const filterUsers = (users: UserType[], filterText: string): UserType[] =
 export const getDepartmentName = (department: string) => {
   return departmentMap[department] || department;
 };
+
+export const capitalize = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);

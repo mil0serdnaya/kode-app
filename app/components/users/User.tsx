@@ -1,5 +1,6 @@
 'use client';
 import { styled } from 'styled-components';
+import { capitalize } from '../../../lib/utils';
 
 const StyledUser = styled.div`
   padding: 6px;
@@ -62,7 +63,7 @@ export const User = ({
           <StyledUserName>{firstName} {lastName}</StyledUserName>
           <StyledUserTag>{userTag}</StyledUserTag>
         </div>
-        <StyledUserDepartment>{position}</StyledUserDepartment>
+        <StyledUserDepartment>{capitalize(position)}</StyledUserDepartment>
       </div>
     </StyledUser>
   );
