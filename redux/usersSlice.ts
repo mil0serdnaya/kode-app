@@ -1,13 +1,21 @@
 
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { fetchUsers } from "../lib/services/userService";
-import { UsersType, UsersState } from "../lib/types";
+import { UserType, UsersType, UsersState } from "../lib/types";
 
 export const loadUsers = createAsyncThunk<UsersType>(
   "users/loadUsers",
   async () => {
     const usersData = await fetchUsers();
-    return usersData;
+
+    const normalizedUsers = usersData.map((user: UserType) => ({
+      ...user,
+      userTag: user.userTag !== "string" 
+        ? user.userTag 
+        : '',
+    }));
+
+    return normalizedUsers;
   }
 );
 
