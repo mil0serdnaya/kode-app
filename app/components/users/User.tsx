@@ -35,7 +35,7 @@ const StyledUserTag = styled.span`
   line-height: 18px; 
 `;
 
-const StyledUserDepartment = styled.span`
+const StyledUserPosition = styled.span`
   display: block;
   font-size: 13px;
   color: #55555C;
@@ -63,7 +63,9 @@ export const User = ({
           <StyledUserName>{firstName} {lastName}</StyledUserName>
           <StyledUserTag>{userTag}</StyledUserTag>
         </div>
-        <StyledUserDepartment>{capitalize(position)}</StyledUserDepartment>
+        {position.toLowerCase() !== "string" && (
+          <StyledUserPosition>{capitalize(position)}</StyledUserPosition>
+        )}
       </div>
     </StyledUser>
   );
