@@ -1,19 +1,28 @@
-'use client'; 
-import { Provider } from 'react-redux';
-import { store } from '../redux/store';
-import Head from 'next/head';
 import '../styles/normalize.css';
+import type { Metadata } from 'next';
+import { StyledComponentsRegistry } from '../lib/styled-components-registry';
+import { Providers } from '../lib/providers';
+
+export const metadata: Metadata = {
+  title: 'KODE App',
+  description: '',
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <Head>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></link>
-      </Head>
+    <head>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+      />
+    </head>
       <body>
-        <Provider store={store}>
-          {children}
-        </Provider>
+        <StyledComponentsRegistry>
+          <Providers>
+            {children}
+          </Providers>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );
